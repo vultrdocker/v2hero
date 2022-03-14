@@ -1,6 +1,6 @@
 {
-  "name": "Start on Heroku: V2ray Ubuntu",
-  "description": "A barebones V2ray app that makes use of the Silex Anti Spam",
+  "name": "Start on Heroku: V2ray Blocker",
+  "description": " V2ray Versi Blocker that makes use of the Silex Anti Spam",
   "repository": "https://github.com/heroku/v2ray-getting-started",
   "stack": [ "container" ]
 }
