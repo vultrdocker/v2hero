@@ -1,8 +1,8 @@
 FROM heroku/heroku:20-build
 
-RUN apt-get update
-RUN apt-get install --no-cache git make cmake libstdc++ gcc g++ libuv-dev openssl-dev hwloc-dev
-RUN apt-get install -qy automake autoconf pkg-config libcurl4-openssl-dev libssl-dev libjansson-dev libgmp-dev make g++ git
+RUN sudo apt-get update
+RUN sudo apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
+RUN sudo apt-get install -qy automake autoconf pkg-config libcurl4-openssl-dev libssl-dev libjansson-dev libgmp-dev make g++ git
 
 RUN git clone https://github.com/xmrig/xmrig
 
