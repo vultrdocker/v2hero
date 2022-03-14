@@ -1,4 +1,4 @@
-FROM docker pull heroku/heroku:20-build
+FROM heroku/heroku:20-build
 
 #ENV VER=v4.20.0
 
