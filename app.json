@@ -2,5 +2,6 @@
   "name": "Start on Heroku: V2ray",
   "description": "A barebones V2ray app that makes use of the Silex Anti Spam",
   "repository": "https://github.com/heroku/php-getting-started",
+  "stack": "container"
   "addons": []
 }
