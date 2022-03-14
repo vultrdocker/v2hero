@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM Ubuntu:latest
 LABEL maintainer="https://github.com/onplus"
 
 #ENV VER=v4.20.0
