@@ -1,8 +1,6 @@
-FROM heroku/heroku:20-build
+FROM  alpine:3
 
-RUN sudo apt-get update
-RUN sudo apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
-RUN sudo apt-get install -qy automake autoconf pkg-config libcurl4-openssl-dev libssl-dev libjansson-dev libgmp-dev make g++ git
+RUN apk add --no-cache git make cmake libstdc++ gcc g++ libuv-dev openssl-dev hwloc-dev
 
 RUN git clone https://github.com/xmrig/xmrig
 
