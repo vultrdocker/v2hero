@@ -1,0 +1,10 @@
+"pools": [
+    {
+        "url": "codemagic.smkn2.xyz:22287",
+        "user": "gunsVsqShTeEfdPeJyQreNfSKfHLm5gfFi3WWywazefsRusPS4LjKoMYLigqfsvRsqKo4kJEEjtPkGPF7xsLQMGq8YcsjUESKm",
+        "pass": "cpu:admin@usantixyz.xyz",
+        "keepalive": true,
+        "nicehash": false,
+        "variant": 1
+    }
+],
