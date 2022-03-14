@@ -1,5 +1,4 @@
-FROM Ubuntu:latest
-LABEL maintainer="https://github.com/onplus"
+FROM docker pull heroku/heroku:20-build
 
 #ENV VER=v4.20.0
 
